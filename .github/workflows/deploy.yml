@@ -27,7 +27,7 @@ jobs:
         env:
           WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
         run: npm run build
-
+        
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -44,3 +44,4 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
+
