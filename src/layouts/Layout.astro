@@ -1,14 +1,104 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-CL">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<title>{Astro.props.title || 'Abogado Laboral en Chile | Asesoría Legal Laboral | ProTrabajo'}</title>
+		<meta name="description" content="Abogados laborales especialistas en Chile. Despidos injustificados, finiquitos, accidentes laborales, licencias médicas. Consulta gratuita. +20 años de experiencia." />
+		<meta name="keywords" content="abogado laboral chile, abogado laboral santiago, despido injustificado, finiquito, accidente laboral, licencia médica rechazada, demanda laboral, asesoría laboral, derecho laboral chile, abogado despido, indemnización laboral" />
+		
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="ProTrabajo" />
+		<meta name="geo.region" content="CL" />
+		<meta name="geo.placename" content="Santiago, Chile" />
+		<link rel="canonical" href="https://protrabajo.cl/" />
+		
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Abogado Laboral en Chile | Asesoría Legal Laboral | ProTrabajo" />
+		<meta property="og:description" content="Abogados laborales especialistas en Chile. Despidos injustificados, finiquitos, accidentes laborales. Consulta gratuita." />
+		<meta property="og:url" content="https://protrabajo.cl/" />
+		<meta property="og:locale" content="es_CL" />
+		
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Abogado Laboral en Chile | ProTrabajo" />
+		<meta name="twitter:description" content="Abogados laborales especialistas en Chile. Despidos injustificados, finiquitos, accidentes laborales." />
+		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-		<title>{Astro.props.title || 'ProTrabajo - Asesoría Legal Laboral'}</title>
+		
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "LegalService",
+			"name": "ProTrabajo - Abogados Laborales",
+			"description": "Abogados laborales especialistas en Chile. Despidos injustificados, finiquitos, accidentes laborales, licencias médicas rechazadas.",
+			"url": "https://protrabajo.cl",
+			"logo": "https://protrabajo.cl/logo-Protrabajo.png",
+			"image": "https://protrabajo.cl/images/foto-abogado.png",
+			"telephone": "+56912345678",
+			"email": "info@protrabajo.cl",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Santiago",
+				"addressRegion": "Región Metropolitana",
+				"addressCountry": "CL"
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				"latitude": "-33.4489",
+				"longitude": "-70.6693"
+			},
+			"areaServed": {
+				"@type": "Country",
+				"name": "Chile"
+			},
+			"priceRange": "Consulta Gratuita",
+			"openingHours": "Mo-Fr 09:00-18:00",
+			"sameAs": [
+				"https://www.facebook.com/protrabajo",
+				"https://www.instagram.com/protrabajo"
+			],
+			"aggregateRating": {
+				"@type": "AggregateRating",
+				"ratingValue": "4.9",
+				"reviewCount": "150"
+			},
+			"hasOfferCatalog": {
+				"@type": "OfferCatalog",
+				"name": "Servicios Legales Laborales",
+				"itemListElement": [
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Despido Injustificado",
+							"description": "Asesoría legal para casos de despido injustificado en Chile"
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Finiquitos",
+							"description": "Revisión y negociación de finiquitos laborales"
+						}
+					},
+					{
+						"@type": "Offer",
+						"itemOffered": {
+							"@type": "Service",
+							"name": "Accidentes Laborales",
+							"description": "Defensa legal en casos de accidentes de trabajo"
+						}
+					}
+				]
+			}
+		}
+		</script>
 	</head>
 	<body>
 		<slot />

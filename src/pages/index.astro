@@ -22,8 +22,8 @@ import ContactInfo from '../components/ContactInfo.astro';
 				¿TE DESPIDIERON INJUSTAMENTE<br>
 				<span class="highlight">Y NO SABES QUÉ HACER?</span>
 			</h1>
-			<p class="subtitle">Defiende tus derechos con un abogado laboralista experto.<br>
-			Evaluamos tu caso gratis, te explicamos tus opciones con claridad y solo cobramos si ganas.</p>
+			<p class="subtitle">Defiende tus derechos con un abogado laboral experto en Chile.<br>
+			Consulta gratuita • Evaluamos tu caso sin costo • Solo cobramos si ganas</p>
 			<div class="cta-group">
 				<a href="#contacto" class="cta-button primary">
 					Consulta Gratis Ahora
@@ -39,8 +39,8 @@ import ContactInfo from '../components/ContactInfo.astro';
 	<section id="casos" class="casos-section">
 		<div class="container">
 			<div class="section-header">
-				<h2>Casos que vemos todos los días</h2>
-				<p class="section-subtitle">¿Alguno es tu caso?</p>
+				<h2>Casos Laborales Más Comunes en Chile</h2>
+				<p class="section-subtitle">Especialistas en despidos, finiquitos, accidentes laborales y más</p>
 			</div>
 
 			<div class="casos-grid">
@@ -140,7 +140,7 @@ import ContactInfo from '../components/ContactInfo.astro';
 		<div class="container">
 			<div class="section-header">
 				<span class="section-badge">Nosotros</span>
-				<h2>Deja tu caso en manos de un especialista laboral</h2>
+				<h2>Abogados Laborales Expertos en Chile con +10 Años de Experiencia</h2>
 			</div>
 			
 			<div class="nosotros-content">
@@ -164,7 +164,7 @@ import ContactInfo from '../components/ContactInfo.astro';
 	<section class="porque-section">
 		<div class="container">
 			<div class="section-header">
-				<h2>¿Por qué consultar con nosotros?</h2>
+				<h2>¿Por qué elegir nuestros Abogados Laborales en Santiago?</h2>
 			</div>
 
 			<div class="porque-grid">
@@ -229,7 +229,7 @@ import ContactInfo from '../components/ContactInfo.astro';
 	<section id="consulta" class="consulta-section">
 		<div class="container">
 			<div class="section-header">
-				<h2>¿En qué consiste una consulta gratuita?</h2>
+				<h2>Consulta Gratuita con Abogado Laboral - Sin Costo ni Compromiso</h2>
 			</div>
 
 			<div class="consulta-grid">
@@ -430,6 +430,7 @@ import ContactInfo from '../components/ContactInfo.astro';
 	}
 
 	h2 {
+		font-size: 32px;
 		color: #454655;
 		font-weight: 700;
 	}
@@ -616,7 +617,7 @@ import ContactInfo from '../components/ContactInfo.astro';
 	}
 
 	.nosotros-section h2 {
-		font-size: clamp(2rem, 5vw, 3rem);
+		font-size: 32px;
 		margin-bottom: 1rem;
 		color: #454655;
 		font-weight: 700;
@@ -677,12 +678,18 @@ import ContactInfo from '../components/ContactInfo.astro';
 	/* Sección Casos */
 	.casos-section {
 		padding: 6rem 2rem;
-		background: #ffffff;
+		background: #CACAD0;
 	}
 
 	.casos-section .container {
 		max-width: 1400px;
 		margin: 0 auto;
+	}
+
+	.casos-section .section-subtitle {
+		font-size: 20px;
+		line-height: 17px;
+		color: #1B4292;
 	}
 
 	.casos-grid {
@@ -781,8 +788,11 @@ import ContactInfo from '../components/ContactInfo.astro';
 	/* Sección Consulta */
 	.consulta-section {
 		padding: 6rem 2rem;
-		background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+		background: #1E3166;
 		color: white;
+	}
+	.consulta-section h2 {
+		color: #f0f0f0;
 	}
 
 	.consulta-grid {
