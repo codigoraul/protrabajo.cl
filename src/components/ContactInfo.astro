@@ -150,64 +150,16 @@ const statusData = status ? statusMessages[status] : null;
         <p>Visítanos en nuestra oficina ubicada en el corazón de Providencia</p>
       </div>
       
-      <div class="map-container">
-        <div class="map-wrapper">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.843432345678!2d-70.6504323!3d-33.4421234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5b8a9b8b8b8%3ASanta%20Magdalena%2075%2C%20Providencia!2m2!1d-33.4421234!2d-70.6504323!5e0!3m2!1ses!2scl!4v1234567890"
-            width="100%" 
-            height="450" 
-            style="border:0; border-radius: 16px;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-        
-        <div class="map-info">
-          <div class="address-card">
-            <div class="address-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
-            <div class="address-details">
-              <h4>Dirección</h4>
-              <p class="address-text">Santa Magdalena N° 75</p>
-              <p class="address-city">Providencia, Santiago</p>
-              <p class="address-region">Región Metropolitana, Chile</p>
-            </div>
-          </div>
-          
-          <div class="transport-info">
-            <h5>¿Cómo llegar?</h5>
-            <div class="transport-options">
-              <div class="transport-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="4" y="4" width="16" height="16" rx="2"/>
-                  <line x1="9" y1="9" x2="15" y2="9"/>
-                  <line x1="9" y1="15" x2="15" y2="15"/>
-                </svg>
-                <span>Metro: Los Leones (Línea 1) - 5 min caminando</span>
-              </div>
-              <div class="transport-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="8.5" cy="7" r="4"/>
-                  <path d="M20 8v6M23 11h-6"/>
-                </svg>
-                <span>Bus: Paradas cercanas en Av. Providencia</span>
-              </div>
-              <div class="transport-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="1" y="3" width="15" height="12"/>
-                  <polygon points="16,8 20,8 23,12 23,16 16,16"/>
-                </svg>
-                <span>Estacionamiento: Disponible en zona</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="map-full-width">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3329.843432345678!2d-70.6504323!3d-33.4421234!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2zMzPCsDI2JzQ0LjMiTiA3MMKwMzknMjUuNCJF!5e0!3m2!1ses!2scl!4v1707425600000"
+          width="100%" 
+          height="450" 
+          style="border:0; border-radius: 16px;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
     </div>
   </div>
@@ -534,14 +486,7 @@ const statusData = status ? statusMessages[status] : null;
     margin: 0 auto;
   }
 
-  .map-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .map-wrapper {
+  .map-full-width {
     position: relative;
     overflow: hidden;
     border-radius: 16px;
@@ -549,108 +494,13 @@ const statusData = status ? statusMessages[status] : null;
     background: #f0f0f0;
   }
 
-  .map-wrapper iframe {
+  .map-full-width iframe {
     display: block;
     width: 100%;
     height: 450px;
   }
 
-  .map-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .address-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    padding: 2rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-  }
-
-  .address-icon {
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #22D3EE 0%, #06b6d4 100%);
-    border-radius: 12px;
-    color: #0f172a;
-  }
-
-  .address-details h4 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.75rem;
-  }
-
-  .address-text {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #22D3EE;
-    margin-bottom: 0.25rem;
-  }
-
-  .address-city,
-  .address-region {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 0.25rem;
-  }
-
-  .transport-info {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 2rem;
-  }
-
-  .transport-info h5 {
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-  }
-
-  .transport-options {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .transport-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 0.95rem;
-  }
-
-  .transport-item svg {
-    flex-shrink: 0;
-    color: #22D3EE;
-  }
-
   /* Responsive para mapa */
-  @media (max-width: 1024px) {
-    .map-container {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .map-wrapper iframe {
-      height: 350px;
-    }
-  }
-
   @media (max-width: 768px) {
     .map-section {
       margin-top: 2rem;
@@ -661,20 +511,8 @@ const statusData = status ? statusMessages[status] : null;
       font-size: 1.5rem;
     }
 
-    .map-wrapper iframe {
+    .map-full-width iframe {
       height: 300px;
-    }
-
-    .address-card {
-      flex-direction: column;
-      text-align: center;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .transport-item {
-      justify-content: center;
-      text-align: center;
     }
   }
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
