@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# files with secrets/tokens
+webhook-github.php
+*.php

@@ -1,3 +1,7 @@
+---
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+---
+
 <!doctype html>
 <html lang="es-CL">
 	<head>
@@ -39,11 +43,12 @@
 			"url": "https://protrabajo.cl",
 			"logo": "https://protrabajo.cl/logo-Protrabajo.png",
 			"image": "https://protrabajo.cl/images/foto-abogado.png",
-			"telephone": "+56912345678",
+			"telephone": "+56934595047",
 			"email": "info@protrabajo.cl",
 			"address": {
 				"@type": "PostalAddress",
-				"addressLocality": "Santiago",
+				"streetAddress": "Santa Magdalena N° 75",
+				"addressLocality": "Providencia",
 				"addressRegion": "Región Metropolitana",
 				"addressCountry": "CL"
 			},
@@ -102,6 +107,7 @@
 	</head>
 	<body>
 		<slot />
+		<WhatsAppFloat />
 	</body>
 </html>
 

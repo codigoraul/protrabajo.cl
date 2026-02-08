@@ -1,10 +1,12 @@
 ---
-import { getContactInfo } from '../lib/wordpress.js';
+import { getContactInfo, getServicios } from '../lib/wordpress.js';
 
 const contactInfo = await getContactInfo();
-const email = contactInfo?.acf?.email || 'info@protrabajo.cl';
-const telefono = contactInfo?.acf?.telefono || '+56 9 1234 5678';
-const direccion = contactInfo?.acf?.direccion || 'Santiago, Chile';
+const email = contactInfo?.acf?.email || 'contacto@protrabajo.cl';
+const telefono = contactInfo?.acf?.telefono || '+569 34595047';
+const direccion = contactInfo?.acf?.direccion || 'Santa Magdalena N° 75, Providencia.';
+
+const servicios = await getServicios();
 ---
 
 <footer class="footer">
@@ -12,7 +14,7 @@ const direccion = contactInfo?.acf?.direccion || 'Santiago, Chile';
     <div class="footer-grid">
       <div class="footer-col">
         <img src="/images/logo-protrabajo-white.png" alt="ProTrabajo Logo" style="height: 50px;">
-        <p class="footer-desc">Asesoría legal especializada en derecho laboral con más de 15 años de experiencia defendiendo tus derechos.</p>
+        <p class="footer-desc">Asesoría legal especializada en derecho laboral con más de 10 años de experiencia defendiendo tus derechos.</p>
         <div class="social-links">
           <a href="#" aria-label="LinkedIn" class="social-link">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -47,10 +49,9 @@ const direccion = contactInfo?.acf?.direccion || 'Santiago, Chile';
       <div class="footer-col">
         <h4>Servicios</h4>
         <ul class="footer-links">
-          <li><a href="#servicios">Asesoría Legal Laboral</a></li>
-          <li><a href="#servicios">Defensa en Juicios</a></li>
-          <li><a href="#servicios">Negociación Colectiva</a></li>
-          <li><a href="#servicios">Contratos de Trabajo</a></li>
+          {servicios.slice(0, 8).map((servicio) => (
+            <li><a href="#servicios">{servicio.title.rendered}</a></li>
+          ))}
         </ul>
       </div>
 

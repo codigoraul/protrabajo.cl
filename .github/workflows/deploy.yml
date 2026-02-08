@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: '0 */2 * * *'  # Cada 2 horas
+    - cron: '0 * * * *'  # Cada 1 hora
 
 jobs:
   build-and-deploy:

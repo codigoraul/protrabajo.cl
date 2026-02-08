@@ -3,9 +3,9 @@ import { getContactInfo } from '../lib/wordpress.js';
 
 const contactInfo = await getContactInfo();
 
-const email = contactInfo?.acf?.email || 'info@protrabajo.cl';
-const telefono = contactInfo?.acf?.telefono || '+56 9 1234 5678';
-const direccion = contactInfo?.acf?.direccion || 'Santiago, Chile';
+const email = contactInfo?.acf?.email || 'contacto@protrabajo.cl';
+const telefono = contactInfo?.acf?.telefono || '+569 34595047';
+const direccion = contactInfo?.acf?.direccion || 'Santa Magdalena N° 75, Providencia';
 const horario = contactInfo?.acf?.horario || 'Lunes a Viernes 9:00 - 18:00';
 
 const rawBase = import.meta.env.BASE_URL ?? '/';
