@@ -198,6 +198,21 @@ const statusData = status ? statusMessages[status] : null;
             // Mostrar mensaje de éxito
             const successMessage = document.createElement('div');
             successMessage.className = 'status-message status-success';
+            successMessage.style.cssText = `
+              padding: 1.5rem 2rem !important;
+              border-radius: 12px !important;
+              margin-bottom: 2rem !important;
+              font-size: 1.3rem !important;
+              font-weight: 700 !important;
+              line-height: 1.6 !important;
+              text-align: center !important;
+              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+              border: 2px solid rgba(16, 185, 129, 0.5) !important;
+              background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+              color: #ffffff !important;
+              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+              animation: slideInDown 0.5s ease-out !important;
+            `;
             successMessage.textContent = '¡Formulario enviado exitosamente! Nos pondremos en contacto contigo pronto.';
             
             // Insertar mensaje al principio del wrapper
