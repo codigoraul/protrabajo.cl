@@ -18,7 +18,9 @@ const servicios = await getServicios();
           <article class="servicio-card" style={`animation-delay: ${index * 0.1}s`}>
             <div class="card-content">
               <div class="card-number">{String(index + 1).padStart(2, '0')}</div>
-              <h3 set:html={servicio.title.rendered} />
+              <a href={`/servicios/${servicio.slug}`} class="card-title-link">
+                <h3 set:html={servicio.title.rendered} />
+              </a>
               <div class="excerpt" set:html={servicio.excerpt.rendered} />
               <a href={`/servicios/${servicio.slug}`} class="card-link">
                 <span>Conocer más</span>
@@ -28,13 +30,15 @@ const servicios = await getServicios();
               </a>
             </div>
             {servicio._embedded?.['wp:featuredmedia']?.[0]?.source_url && (
-              <div class="card-image">
-                <img 
-                  src={servicio._embedded['wp:featuredmedia'][0].source_url} 
-                  alt={servicio.title.rendered}
-                  loading="lazy"
-                />
-              </div>
+              <a href={`/servicios/${servicio.slug}`} class="card-image-link">
+                <div class="card-image">
+                  <img 
+                    src={servicio._embedded['wp:featuredmedia'][0].source_url} 
+                    alt={servicio.title.rendered}
+                    loading="lazy"
+                  />
+                </div>
+              </a>
             )}
           </article>
         ))
@@ -142,6 +146,16 @@ const servicios = await getServicios();
     opacity: 0.2;
   }
   
+  .card-title-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .card-title-link:hover h3 {
+    color: #1e3a8a;
+  }
+
   .servicio-card h3 {
     font-size: 1.5rem;
     color: #454655;
@@ -149,6 +163,7 @@ const servicios = await getServicios();
     font-weight: 700;
     line-height: 1.3;
     padding-right: 3rem;
+    transition: color 0.3s ease;
   }
   
   .servicio-card .excerpt {
@@ -184,6 +199,11 @@ const servicios = await getServicios();
     transform: translateX(4px);
   }
   
+  .card-image-link {
+    display: block;
+    text-decoration: none;
+  }
+
   .card-image {
     height: 200px;
     overflow: hidden;
