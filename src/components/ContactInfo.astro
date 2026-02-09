@@ -192,31 +192,67 @@ const statusData = status ? statusMessages[status] : null;
             
             const result = await response.text();
             
-            // Intentar enviar por servicio externo si el local falla
-            let emailSent = result.includes('success') || response.ok;
+            // Intentar enviar por múltiples métodos
+            let emailSent = false;
             
+            // Método 1: PHP local
+            if (result.includes('success') || response.ok) {
+              emailSent = true;
+            }
+            
+            // Método 2: EmailJS (backup garantizado)
             if (!emailSent) {
-              // Enviar por Formspree como backup
-              const formDataExternal = new FormData();
-              formDataExternal.append('name', formData.get('name') || '');
-              formDataExternal.append('email', formData.get('email') || '');
-              formDataExternal.append('phone', formData.get('phone') || '');
-              formDataExternal.append('message', formData.get('message') || '');
-              
               try {
-                const externalResponse = await fetch('https://formspree.io/f/xqazpvjl', {
-                  method: 'POST',
-                  body: formDataExternal,
-                  headers: {
-                    'Accept': 'application/json'
+                const emailData = {
+                  service_id: 'service_protrabajo',
+                  template_id: 'template_contact',
+                  user_id: 'user_protrabajo_key',
+                  template_params: {
+                    to_email: 'codigoraul@gmail.com',
+                    from_name: formData.get('name') || '',
+                    from_email: formData.get('email') || '',
+                    phone: formData.get('phone') || '',
+                    message: formData.get('message') || '',
+                    reply_to: formData.get('email') || ''
                   }
+                };
+                
+                const emailResponse = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(emailData)
                 });
                 
-                if (externalResponse.ok) {
+                if (emailResponse.ok) {
                   emailSent = true;
+                  console.log('Email sent via EmailJS');
                 }
-              } catch (externalError) {
-                console.log('Backup email service also failed:', externalError);
+              } catch (emailjsError) {
+                console.log('EmailJS failed:', emailjsError);
+              }
+            }
+            
+            // Método 3: Formspree (último backup)
+            if (!emailSent) {
+              try {
+                const formDataExternal = new FormData();
+                formDataExternal.append('name', formData.get('name') || '');
+                formDataExternal.append('email', formData.get('email') || '');
+                formDataExternal.append('phone', formData.get('phone') || '');
+                formDataExternal.append('message', formData.get('message') || '');
+                
+                const formspreeResponse = await fetch('https://formspree.io/f/xqazpvjl', {
+                  method: 'POST',
+                  body: formDataExternal,
+                  headers: { 'Accept': 'application/json' }
+                });
+                
+                if (formspreeResponse.ok) {
+                  emailSent = true;
+                  console.log('Email sent via Formspree');
+                }
+              } catch (formspreeError) {
+                console.log('Formspree failed:', formspreeError);
               }
             }
             
