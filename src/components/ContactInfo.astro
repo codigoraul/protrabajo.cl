@@ -192,38 +192,61 @@ const statusData = status ? statusMessages[status] : null;
             
             const result = await response.text();
             
+            // Verificar si la respuesta contiene indicadores de éxito
+            const isEmailSent = result.includes('success') || response.ok;
+            
             // Limpiar formulario
             form.reset();
             
-            // Mostrar mensaje de éxito
-            const successMessage = document.createElement('div');
-            successMessage.className = 'status-message status-success';
-            successMessage.style.cssText = `
-              padding: 1.5rem 2rem !important;
-              border-radius: 12px !important;
-              margin-bottom: 2rem !important;
-              font-size: 1.3rem !important;
-              font-weight: 700 !important;
-              line-height: 1.6 !important;
-              text-align: center !important;
-              box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
-              border: 2px solid rgba(16, 185, 129, 0.5) !important;
-              background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
-              color: #ffffff !important;
-              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
-              animation: slideInDown 0.5s ease-out !important;
-            `;
-            successMessage.textContent = '¡Formulario enviado exitosamente! Nos pondremos en contacto contigo pronto.';
+            // Mostrar mensaje apropiado
+            const message = document.createElement('div');
+            message.className = 'status-message';
+            
+            if (isEmailSent) {
+              message.style.cssText = `
+                padding: 1.5rem 2rem !important;
+                border-radius: 12px !important;
+                margin-bottom: 2rem !important;
+                font-size: 1.3rem !important;
+                font-weight: 700 !important;
+                line-height: 1.6 !important;
+                text-align: center !important;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+                border: 2px solid rgba(16, 185, 129, 0.5) !important;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+                color: #ffffff !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+                animation: slideInDown 0.5s ease-out !important;
+              `;
+              message.textContent = '✅ ¡Formulario enviado exitosamente! Revisa tu correo (codigoraul@gmail.com). Nos pondremos en contacto contigo pronto.';
+            } else {
+              message.style.cssText = `
+                padding: 1.5rem 2rem !important;
+                border-radius: 12px !important;
+                margin-bottom: 2rem !important;
+                font-size: 1.3rem !important;
+                font-weight: 700 !important;
+                line-height: 1.6 !important;
+                text-align: center !important;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+                border: 2px solid rgba(239, 68, 68, 0.5) !important;
+                background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+                color: #ffffff !important;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+                animation: slideInDown 0.5s ease-out !important;
+              `;
+              message.textContent = '⚠️ Formulario recibido pero hubo un problema al enviar el correo. Te contactaremos por teléfono. Gracias por tu paciencia.';
+            }
             
             // Insertar mensaje al principio del wrapper
-            formWrapper.insertBefore(successMessage, form);
+            formWrapper.insertBefore(message, form);
             
-            // Remover mensaje después de 5 segundos
+            // Remover mensaje después de 8 segundos
             setTimeout(() => {
-              if (successMessage.parentNode) {
-                successMessage.parentNode.removeChild(successMessage);
+              if (message.parentNode) {
+                message.parentNode.removeChild(message);
               }
-            }, 5000);
+            }, 8000);
             
           } catch (error) {
             console.error('Error al enviar formulario:', error);
