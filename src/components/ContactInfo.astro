@@ -192,8 +192,33 @@ const statusData = status ? statusMessages[status] : null;
             
             const result = await response.text();
             
-            // Verificar si la respuesta contiene indicadores de éxito
-            const isEmailSent = result.includes('success') || response.ok;
+            // Intentar enviar por servicio externo si el local falla
+            let emailSent = result.includes('success') || response.ok;
+            
+            if (!emailSent) {
+              // Enviar por Formspree como backup
+              const formDataExternal = new FormData();
+              formDataExternal.append('name', formData.get('name') || '');
+              formDataExternal.append('email', formData.get('email') || '');
+              formDataExternal.append('phone', formData.get('phone') || '');
+              formDataExternal.append('message', formData.get('message') || '');
+              
+              try {
+                const externalResponse = await fetch('https://formspree.io/f/xqazpvjl', {
+                  method: 'POST',
+                  body: formDataExternal,
+                  headers: {
+                    'Accept': 'application/json'
+                  }
+                });
+                
+                if (externalResponse.ok) {
+                  emailSent = true;
+                }
+              } catch (externalError) {
+                console.log('Backup email service also failed:', externalError);
+              }
+            }
             
             // Limpiar formulario
             form.reset();
@@ -202,7 +227,7 @@ const statusData = status ? statusMessages[status] : null;
             const message = document.createElement('div');
             message.className = 'status-message';
             
-            if (isEmailSent) {
+            if (emailSent) {
               message.style.cssText = `
                 padding: 1.5rem 2rem !important;
                 border-radius: 12px !important;
@@ -235,7 +260,7 @@ const statusData = status ? statusMessages[status] : null;
                 text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
                 animation: slideInDown 0.5s ease-out !important;
               `;
-              message.textContent = '⚠️ Formulario recibido pero hubo un problema al enviar el correo. Te contactaremos por teléfono. Gracias por tu paciencia.';
+              message.textContent = '⚠️ Hubo un problema técnico. Por favor llámanos directamente al +56934595047 o escríbenos a info@protrabajo.cl. Gracias.';
             }
             
             // Insertar mensaje al principio del wrapper
