@@ -30,13 +30,6 @@ jobs:
           WORDPRESS_API_URL: ${{ secrets.WORDPRESS_API_URL }}
         run: npm run build
 
-      - name: List build files
-        run: |
-          echo "=== Build directory contents ==="
-          find dist/ -type f -name "*.css" -o -name "*.html" | head -20
-          echo "=== Checking _astro directory ==="
-          ls -la dist/_astro/ || echo "_astro directory not found"
-
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -52,4 +45,3 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
-          log-level: verbose
