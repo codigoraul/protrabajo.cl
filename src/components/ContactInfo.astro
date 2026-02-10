@@ -157,32 +157,6 @@ const statusData = status ? statusMessages[status] : null;
 </section>
 
 <script>
-  // Cargar datos de WordPress headless - usar URL absoluta
-  fetch('https://protrabajo.cl/admin/wp-json/wp/v2/contact-info')
-    .then(response => response.json())
-    .then(data => {
-      console.log('WordPress data:', data);
-      
-      if (data?.acf?.email) {
-        const emailEl = document.getElementById('contact-email');
-        if (emailEl) {
-          emailEl.textContent = data.acf.email;
-          emailEl.href = `mailto:${data.acf.email}`;
-        }
-      }
-      
-      if (data?.acf?.telefono) {
-        const phoneEl = document.getElementById('contact-phone');
-        if (phoneEl) {
-          phoneEl.textContent = data.acf.telefono;
-          phoneEl.href = `tel:${data.acf.telefono}`;
-        }
-      }
-    })
-    .catch(error => console.error('Error:', error));
-</script>
-
-<script>
   document.addEventListener('DOMContentLoaded', function() {
     const basePath = window.location.pathname.includes('/prueba') ? '/prueba' : '';
     const form = document.getElementById('contactForm') as HTMLFormElement;
@@ -212,10 +186,10 @@ const statusData = status ? statusMessages[status] : null;
             
             // Guardar datos como backup (por si el correo no llega)
             const formDataCopy = {
-              name: formData.get('name'),
+              nombre: formData.get('nombre'),
               email: formData.get('email'), 
-              phone: formData.get('phone'),
-              message: formData.get('message'),
+              telefono: formData.get('telefono'),
+              mensaje: formData.get('mensaje'),
               timestamp: new Date().toISOString()
             };
             
@@ -653,29 +627,6 @@ const statusData = status ? statusMessages[status] : null;
 
     .map-full-width iframe {
       height: 300px;
-    }
-  }
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-  }
-  
-  .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-  }
-  
-  @media (max-width: 768px) {
-    .contact-info-section {
-      padding: 4rem 1.5rem;
-    }
-    
-    .contact-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    
-    .cta-footer {
-      padding: 2rem 1.5rem;
     }
   }
 </style>
