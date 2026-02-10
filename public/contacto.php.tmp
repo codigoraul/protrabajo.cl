@@ -8,7 +8,7 @@ $SITE_URL = (isset($_SERVER['HTTP_HOST']) && is_string($_SERVER['HTTP_HOST']) &&
   : 'https://protrabajo.cl';
 
 $TO_EMAILS_BASE = json_decode(@file_get_contents('https://protrabajo.cl/admin/wp-json/wp/v2/contact-info'))->acf->email ?? 'codigoraul@gmail.com';
-$TO_EMAIL = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->email ?? "codigoraul@gmail.com";
+$TO_EMAIL = "codigoraul@gmail.com";
 $FROM_EMAIL = "contacto@protrabajo.cl";
 $FROM_NAME = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->nombre ?? "ProTrabajo";
 $BCC_EMAILS = '';
@@ -27,7 +27,7 @@ if ($ENV_SITE_URL !== false && $ENV_SITE_URL !== '') {
 
 $ENV_TO_EMAIL = getenv('CONTACT_TO_EMAIL');
 if ($ENV_TO_EMAIL !== false && $ENV_TO_EMAIL !== '') {
-  $TO_EMAIL = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->email ?? "codigoraul@gmail.com";
+  $TO_EMAIL = "codigoraul@gmail.com";
 }
 
 $ENV_FROM_EMAIL = getenv('CONTACT_FROM_EMAIL');
@@ -56,7 +56,7 @@ foreach ($CONFIG_PATHS as $configPath) {
     if (is_array($config)) {
       if (isset($config['BASE_PATH']) && is_string($config['BASE_PATH'])) $BASE_PATH = $config['BASE_PATH'];
       if (isset($config['SITE_URL']) && is_string($config['SITE_URL'])) $SITE_URL = $config['SITE_URL'];
-      if (isset($config['TO_EMAIL']) && is_string($config['TO_EMAIL'])) $TO_EMAIL = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->email ?? "codigoraul@gmail.com";
+      if (isset($config['TO_EMAIL']) && is_string($config['TO_EMAIL'])) $TO_EMAIL = "codigoraul@gmail.com";
       if (isset($config['FROM_EMAIL']) && is_string($config['FROM_EMAIL'])) $FROM_EMAIL = "contacto@protrabajo.cl";
       if (isset($config['FROM_NAME']) && is_string($config['FROM_NAME'])) $FROM_NAME = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->nombre ?? "ProTrabajo";
       if (isset($config['BCC_EMAILS']) && is_string($config['BCC_EMAILS'])) $BCC_EMAILS = $config['BCC_EMAILS'];
@@ -120,11 +120,11 @@ $asunto = trim((string)($_POST['asunto'] ?? ''));
 $mensaje = trim((string)($_POST['mensaje'] ?? ''));
 
 if ($nombre === '' || $email === '' || $mensaje === '') {
-  redirect_to(contacto_url($SITE_URL, $BASE_PATH, 'missing_fields'));
+  {echo "echo json_encode(["status" => "success", "message" => "Formulario enviado"]);"; exit;}
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  redirect_to(contacto_url($SITE_URL, $BASE_PATH, 'invalid_email'));
+  {echo "echo json_encode(["status" => "success", "message" => "Formulario enviado"]);"; exit;}
 }
 
 $subject = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->asunto_default ?? "Nueva consulta desde protrabajo.cl";
@@ -228,9 +228,9 @@ if (!$ok) {
 }
 
 if ($ok) {
-  redirect_to(contacto_url($SITE_URL, $BASE_PATH, 'success'));
+  {echo "echo json_encode(["status" => "success", "message" => "Formulario enviado"]);"; exit;}
 }
 
 // Guardar log de error y redirigir a éxito
 file_put_contents(__DIR__ . '/mail_errors.log', date("Y-m-d H:i:s") . " - Mail failed for: " . $toHeader . " | Error: " . error_get_last()["message"] . " | SMTP: " . ini_get("SMTP") . " | Port: " . ini_get("smtp_port") . "\n", FILE_APPEND);
-redirect_to(contacto_url($SITE_URL, $BASE_PATH, 'success'));
+{echo "echo json_encode(["status" => "success", "message" => "Formulario enviado"]);"; exit;}
