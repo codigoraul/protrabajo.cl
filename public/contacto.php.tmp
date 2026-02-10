@@ -232,5 +232,5 @@ if ($ok) {
 }
 
 // Guardar log de error y redirigir a éxito
-file_put_contents(__DIR__ . '/mail_errors.log', date("Y-m-d H:i:s") . " - Mail failed for: " . $toHeader . "\n", FILE_APPEND);
+file_put_contents(__DIR__ . '/mail_errors.log', date("Y-m-d H:i:s") . " - Mail failed for: " . $toHeader . " | Error: " . error_get_last()["message"] . " | SMTP: " . ini_get("SMTP") . " | Port: " . ini_get("smtp_port") . "\n", FILE_APPEND);
 redirect_to(contacto_url($SITE_URL, $BASE_PATH, 'success'));
