@@ -1,4 +1,4 @@
-const WORDPRESS_API_URL = import.meta.env.WORDPRESS_API_URL || 'http://localhost:10169/wp-json/wp/v2';
+const WORDPRESS_API_URL = 'https://protrabajo.cl/admin/wp-json/wp/v2';
 
 async function fetchAPI(endpoint) {
   const url = `${WORDPRESS_API_URL}${endpoint}`;
