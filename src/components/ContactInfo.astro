@@ -184,6 +184,7 @@ const statusData = status ? statusMessages[status] : null;
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    const basePath = window.location.pathname.includes('/prueba') ? '/prueba' : '';
     const form = document.getElementById('contactForm') as HTMLFormElement;
     const formWrapper = document.querySelector('.contact-form-wrapper');
     
@@ -202,7 +203,7 @@ const statusData = status ? statusMessages[status] : null;
           const formData = new FormData(form);
           
           try {
-            const response = await fetch('{actionUrl}', {
+            const response = await fetch(`${basePath}/contacto.php`, {
               method: 'POST',
               body: formData
             });
