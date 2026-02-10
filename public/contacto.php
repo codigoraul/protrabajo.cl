@@ -118,7 +118,7 @@ $telefono = trim((string)($_POST['telefono'] ?? ''));
 $asunto = trim((string)($_POST['asunto'] ?? ''));
 $mensaje = trim((string)($_POST['mensaje'] ?? ''));
 
-if ($nombre === '' || $email === '' || $mensaje === '') {
+$bccEmails = [];
 $toEmails = [$TO_EMAIL];
 }
 
