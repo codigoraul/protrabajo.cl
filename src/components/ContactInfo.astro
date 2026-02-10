@@ -157,6 +157,29 @@ const statusData = status ? statusMessages[status] : null;
 </section>
 
 <script>
+  // Cargar datos de contacto desde WordPress
+  fetch('https://protrabajo.cl/admin/wp-json/wp/v2/contact-info')
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.acf) {
+        const emailEl = document.getElementById('contact-email');
+        const phoneEl = document.getElementById('contact-phone');
+        
+        if (emailEl && data.acf.email) {
+          emailEl.textContent = data.acf.email;
+          emailEl.href = `mailto:${data.acf.email}`;
+        }
+        
+        if (phoneEl && data.acf.telefono) {
+          phoneEl.textContent = data.acf.telefono;
+          phoneEl.href = `tel:${data.acf.telefono}`;
+        }
+      }
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+
+<script>
   document.addEventListener('DOMContentLoaded', function() {
     const basePath = window.location.pathname.includes('/prueba') ? '/prueba' : '';
     const form = document.getElementById('contactForm') as HTMLFormElement;
