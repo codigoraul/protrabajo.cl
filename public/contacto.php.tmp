@@ -127,9 +127,9 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   redirect_to(contacto_url($SITE_URL, $BASE_PATH, 'invalid_email'));
 }
 
-$subject = 'Nueva consulta desde protrabajo.cl';
+$subject = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->asunto_default ?? "Nueva consulta desde protrabajo.cl";
 if ($asunto !== '') {
-  $subject = 'Consulta: ' . $asunto;
+  $subject = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->asunto_default ?? "Nueva consulta desde protrabajo.cl";
 }
 
 $escape = static function (string $value): string {
