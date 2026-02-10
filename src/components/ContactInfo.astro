@@ -1,24 +1,4 @@
 ---
-import { getContactInfo } from '../lib/wordpress.js';
-
-// Obtener datos frescos de WordPress headless
-let contactInfo = null;
-let email = '';
-let telefono = '';
-let direccion = '';
-let horario = '';
-
-// Cargar datos de WordPress
-try {
-  contactInfo = await getContactInfo();
-  if (contactInfo?.acf?.email) email = contactInfo.acf.email;
-  if (contactInfo?.acf?.telefono) telefono = contactInfo.acf.telefono;
-  if (contactInfo?.acf?.direccion) direccion = contactInfo.acf.direccion;
-  if (contactInfo?.acf?.horario) horario = contactInfo.acf.horario;
-} catch (error) {
-  console.log('WordPress API error, no data available');
-}
-
 const rawBase = import.meta.env.BASE_URL ?? '/';
 const basePath = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
 const actionUrl = `${basePath}/contacto.php`;
@@ -57,7 +37,7 @@ const statusData = status ? statusMessages[status] : null;
             </div>
             <div class="item-content">
               <h4>Email</h4>
-              <a href={`mailto:${email}`}>{email}</a>
+              <a href="mailto:" id="contact-email">Cargando...</a>
             </div>
           </div>
 
@@ -69,7 +49,7 @@ const statusData = status ? statusMessages[status] : null;
             </div>
             <div class="item-content">
               <h4>Teléfono</h4>
-              <a href={`tel:${telefono}`}>{telefono}</a>
+              <a href="tel:" id="contact-phone">Cargando...</a>
             </div>
           </div>
 
@@ -175,6 +155,51 @@ const statusData = status ? statusMessages[status] : null;
     </div>
   </div>
 </section>
+
+<script>
+  // Cargar datos de WordPress headless en client-side
+  async function loadContactData() {
+    try {
+      const response = await fetch('https://protrabajo.cl/admin/wp-json/wp/v2/contact-info');
+      const data = await response.json();
+      
+      if (data?.acf?.email) {
+        const emailEl = document.getElementById('contact-email');
+        if (emailEl) {
+          emailEl.textContent = data.acf.email;
+          emailEl.href = `mailto:${data.acf.email}`;
+        }
+      }
+      
+      if (data?.acf?.telefono) {
+        const phoneEl = document.getElementById('contact-phone');
+        if (phoneEl) {
+          phoneEl.textContent = data.acf.telefono;
+          phoneEl.href = `tel:${data.acf.telefono}`;
+        }
+      }
+      
+      if (data?.acf?.direccion) {
+        const addressEl = document.getElementById('contact-address');
+        if (addressEl) {
+          addressEl.textContent = data.acf.direccion;
+        }
+      }
+      
+      if (data?.acf?.horario) {
+        const hoursEl = document.getElementById('contact-hours');
+        if (hoursEl) {
+          hoursEl.textContent = data.acf.horario;
+        }
+      }
+    } catch (error) {
+      console.log('Error loading WordPress data:', error);
+    }
+  }
+  
+  // Cargar datos cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', loadContactData);
+</script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
