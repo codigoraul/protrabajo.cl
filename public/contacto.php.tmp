@@ -119,7 +119,7 @@ $asunto = trim((string)($_POST['asunto'] ?? ''));
 $mensaje = trim((string)($_POST['mensaje'] ?? ''));
 
 if ($nombre === '' || $email === '' || $mensaje === '') {
-  {echo "echo json_encode(["status" => "success", "message" => "Formulario enviado"]);"; exit;}
+$toEmails = [$TO_EMAIL];
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {

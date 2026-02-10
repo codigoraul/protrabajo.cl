@@ -119,11 +119,11 @@ $asunto = trim((string)($_POST['asunto'] ?? ''));
 $mensaje = trim((string)($_POST['mensaje'] ?? ''));
 
 if ($nombre === '' || $email === '' || $mensaje === '') {
-  {echo "echo json_encode(["status" => "success", "message" => "Formulario enviado"]);"; exit;}
+$toEmails = [$TO_EMAIL];
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  {echo "echo json_encode(["status" => "success", "message" => "Formulario enviado"]);"; exit;}
+$toHeader = $TO_EMAIL;
 }
 
 $subject = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->asunto_default ?? "Nueva consulta desde protrabajo.cl";
