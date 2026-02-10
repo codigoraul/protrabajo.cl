@@ -1,24 +1,22 @@
 ---
 import { getContactInfo } from '../lib/wordpress.js';
 
-// Obtener datos frescos en runtime, no build time
+// Obtener datos frescos de WordPress headless
 let contactInfo = null;
-let email = 'contacto@protrabajo.cl';
-let telefono = '+569 34595047';
-let direccion = 'Santa Magdalena N° 75, Providencia';
-let horario = 'Lunes a Viernes 9:00 - 18:00';
+let email = '';
+let telefono = '';
+let direccion = '';
+let horario = '';
 
-// Client-side: cargar datos de WordPress
-if (Astro.request.headers.get('accept')?.includes('text/html')) {
-  try {
-    contactInfo = await getContactInfo();
-    if (contactInfo?.acf?.email) email = contactInfo.acf.email;
-    if (contactInfo?.acf?.telefono) telefono = contactInfo.acf.telefono;
-    if (contactInfo?.acf?.direccion) direccion = contactInfo.acf.direccion;
-    if (contactInfo?.acf?.horario) horario = contactInfo.acf.horario;
-  } catch (error) {
-    console.log('WordPress API error, using defaults');
-  }
+// Cargar datos de WordPress
+try {
+  contactInfo = await getContactInfo();
+  if (contactInfo?.acf?.email) email = contactInfo.acf.email;
+  if (contactInfo?.acf?.telefono) telefono = contactInfo.acf.telefono;
+  if (contactInfo?.acf?.direccion) direccion = contactInfo.acf.direccion;
+  if (contactInfo?.acf?.horario) horario = contactInfo.acf.horario;
+} catch (error) {
+  console.log('WordPress API error, no data available');
 }
 
 const rawBase = import.meta.env.BASE_URL ?? '/';
