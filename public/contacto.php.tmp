@@ -222,9 +222,9 @@ if ($bccEmails !== []) {
 }
 
 $params = '-f ' . $sanitizeHeaderValue($FROM_EMAIL);
-$ok = @mail($toHeader, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, implode("\r\n", $headers), $params);
+$ok = @mail($sanitizeHeaderValue($TO_EMAIL), '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, implode("\r\n", $headers), $params);
 if (!$ok) {
-  $ok = @mail($toHeader, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, implode("\r\n", $headers));
+  $ok = @mail($sanitizeHeaderValue($TO_EMAIL), '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, implode("\r\n", $headers));
 }
 
 if ($ok) {

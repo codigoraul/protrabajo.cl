@@ -192,7 +192,7 @@ const statusData = status ? statusMessages[status] : null;
             
             const result = await response.text();
             
-            // Siempre mostrar éxito y guardar datos
+            // Guardar datos como backup (por si el correo no llega)
             const formDataCopy = {
               name: formData.get('name'),
               email: formData.get('email'), 
@@ -201,29 +201,10 @@ const statusData = status ? statusMessages[status] : null;
               timestamp: new Date().toISOString()
             };
             
-            // Guardar en localStorage como backup
-            const existingSubmissions = JSON.parse(localStorage.getItem('protrabajo_submissions') || '[]');
-            existingSubmissions.push(formDataCopy);
-            localStorage.setItem('protrabajo_submissions', JSON.stringify(existingSubmissions));
-            
-            // Enviar por Formspree (garantizado que funciona)
-            try {
-              const formspreeData = new FormData();
-              formspreeData.append('name', formDataCopy.name || '');
-              formspreeData.append('email', formDataCopy.email || '');
-              formspreeData.append('phone', formDataCopy.phone || '');
-              formspreeData.append('message', formDataCopy.message || '');
-              
-              const formspreeResponse = await fetch('https://formspree.io/f/xqazpvjl', {
-                method: 'POST',
-                body: formspreeData,
-                headers: { 'Accept': 'application/json' }
-              });
-              
-              console.log('Formspree response:', formspreeResponse.ok);
-            } catch (error) {
-              console.log('Formspree error:', error);
-            }
+            // Guardar en localStorage
+            const submissions = JSON.parse(localStorage.getItem('protrabajo_form_data') || '[]');
+            submissions.push(formDataCopy);
+            localStorage.setItem('protrabajo_form_data', JSON.stringify(submissions));
             
             // Limpiar formulario
             form.reset();
@@ -245,7 +226,7 @@ const statusData = status ? statusMessages[status] : null;
               text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
               animation: slideInDown 0.5s ease-out !important;
             `;
-            message.textContent = '✅ ¡Formulario enviado! Revisa tu correo (codigoraul@gmail.com). Nos pondremos en contacto contigo pronto.';
+            message.textContent = '✅ ¡Formulario enviado! Si no recibes correo en 5 minutos, llámanos al +56934595047. Gracias.';
             
             // Insertar mensaje
             formWrapper.insertBefore(message, form);
