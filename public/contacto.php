@@ -127,9 +127,9 @@ $toHeader = $TO_EMAIL;
 }
 
 $subject = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->asunto_default ?? "Nueva consulta desde protrabajo.cl";
-if ($asunto !== '') {
+$subject = "Nueva consulta desde ProTrabajo";
   $subject = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->asunto_default ?? "Nueva consulta desde protrabajo.cl";
-}
+$subject = "Consulta: " . $asunto;
 
 $escape = static function (string $value): string {
   return htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
