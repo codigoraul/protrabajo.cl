@@ -9,7 +9,7 @@ $SITE_URL = (isset($_SERVER['HTTP_HOST']) && is_string($_SERVER['HTTP_HOST']) &&
 
 $TO_EMAILS_BASE = 'codigoraul@gmail.com';
 $TO_EMAIL = $TO_EMAILS_BASE;
-$FROM_EMAIL = 'contacto@protrabajo.cl';
+$FROM_EMAIL = 'codigoraul@gmail.com';
 $FROM_NAME = 'ProTrabajo';
 $BCC_EMAILS = '';
 
