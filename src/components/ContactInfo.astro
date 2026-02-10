@@ -1,12 +1,25 @@
 ---
 import { getContactInfo } from '../lib/wordpress.js';
 
-const contactInfo = await getContactInfo();
+// Obtener datos frescos en runtime, no build time
+let contactInfo = null;
+let email = 'contacto@protrabajo.cl';
+let telefono = '+569 34595047';
+let direccion = 'Santa Magdalena N° 75, Providencia';
+let horario = 'Lunes a Viernes 9:00 - 18:00';
 
-const email = contactInfo?.acf?.email || 'contacto@protrabajo.cl';
-const telefono = contactInfo?.acf?.telefono || '+569 34595047';
-const direccion = contactInfo?.acf?.direccion || 'Santa Magdalena N° 75, Providencia';
-const horario = contactInfo?.acf?.horario || 'Lunes a Viernes 9:00 - 18:00';
+// Client-side: cargar datos de WordPress
+if (Astro.request.headers.get('accept')?.includes('text/html')) {
+  try {
+    contactInfo = await getContactInfo();
+    if (contactInfo?.acf?.email) email = contactInfo.acf.email;
+    if (contactInfo?.acf?.telefono) telefono = contactInfo.acf.telefono;
+    if (contactInfo?.acf?.direccion) direccion = contactInfo.acf.direccion;
+    if (contactInfo?.acf?.horario) horario = contactInfo.acf.horario;
+  } catch (error) {
+    console.log('WordPress API error, using defaults');
+  }
+}
 
 const rawBase = import.meta.env.BASE_URL ?? '/';
 const basePath = rawBase === '/' ? '' : rawBase.replace(/\/$/, '');
@@ -58,7 +71,7 @@ const statusData = status ? statusMessages[status] : null;
             </div>
             <div class="item-content">
               <h4>Teléfono</h4>
-              <a href={`tel:${telefono.replace(/\s/g, '')}`}>{telefono}</a>
+              <a href={`tel:${telefono}`}>{telefono}</a>
             </div>
           </div>
 
@@ -70,8 +83,8 @@ const statusData = status ? statusMessages[status] : null;
               </svg>
             </div>
             <div class="item-content">
-              <h4>Ubicación</h4>
-              <p>{direccion}</p>
+              <h4>Dirección</h4>
+              <p id="contact-address">Santa Magdalena N° 75, Providencia</p>
             </div>
           </div>
 
@@ -84,7 +97,7 @@ const statusData = status ? statusMessages[status] : null;
             </div>
             <div class="item-content">
               <h4>Horario</h4>
-              <p>{horario}</p>
+              <p id="contact-hours">Lunes a Viernes 9:00 - 18:00</p>
             </div>
           </div>
         </div>

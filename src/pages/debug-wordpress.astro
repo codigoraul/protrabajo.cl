@@ -1,0 +1,43 @@
+---
+import { getContactInfo } from '../lib/wordpress.js'
+
+const contactInfo = await getContactInfo()
+
+console.log('WordPress API Response:', contactInfo)
+console.log('Email from WordPress:', contactInfo?.acf?.email)
+console.log('Phone from WordPress:', contactInfo?.acf?.telefono)
+---
+
+<html>
+<head>
+    <title>Debug WordPress API</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .debug { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        pre { background: #000; color: #0f0; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Debug WordPress API</h1>
+    
+    <div class="debug">
+        <h2>Datos Crudos de WordPress:</h2>
+        <pre>{JSON.stringify(contactInfo, null, 2)}</pre>
+    </div>
+    
+    <div class="debug">
+        <h2>Email Extraído:</h2>
+        <p>{contactInfo?.acf?.email || 'NO ENCONTRADO'}</p>
+    </div>
+    
+    <div class="debug">
+        <h2>Teléfono Extraído:</h2>
+        <p>{contactInfo?.acf?.telefono || 'NO ENCONTRADO'}</p>
+    </div>
+    
+    <div class="debug">
+        <h2>URL API Usada:</h2>
+        <p>https://protrabajo.cl/admin/wp-json/wp/v2/contact-info</p>
+    </div>
+</body>
+</html>
