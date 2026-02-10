@@ -120,7 +120,7 @@ $mensaje = trim((string)($_POST['mensaje'] ?? ''));
 
 $bccEmails = [];
 $toEmails = [$TO_EMAIL];
-}
+
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $toHeader = $TO_EMAIL;
