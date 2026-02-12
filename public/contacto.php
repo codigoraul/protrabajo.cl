@@ -7,7 +7,7 @@ $SITE_URL = (isset($_SERVER['HTTP_HOST']) && is_string($_SERVER['HTTP_HOST']) &&
   ? ('https://' . $_SERVER['HTTP_HOST'])
   : 'https://protrabajo.cl';
 
-$TO_EMAIL = "codigoraul@gmail.com, ro.guajardo.vega@gmail.com";
+$TO_EMAIL = "codigoraul@gmail.com, ro.guajardo.vega@gmail.com, rguajardo@protrabajo.cl, contacto@protrabajo.cl";
 $FROM_EMAIL = "contacto@protrabajo.cl";
 $FROM_NAME = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->nombre ?? "ProTrabajo";
 $BCC_EMAILS = '';
