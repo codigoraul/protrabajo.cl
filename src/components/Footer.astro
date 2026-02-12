@@ -83,11 +83,9 @@ const servicios = await getServicios();
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {new Date().getFullYear()} ProTrabajo. Todos los derechos reservados.</p>
+      <p>@2026  ProTrabajo por <a href="https://diseñopaginas.cl" target="_blank">diseñopaginas.cl</a>.</p>
       <div class="footer-legal">
-        <a href="#">Política de Privacidad</a>
-        <span>•</span>
-        <a href="#">Términos y Condiciones</a>
+        
       </div>
     </div>
   </div>
@@ -234,6 +232,17 @@ const servicios = await getServicios();
     margin: 0;
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
+  }
+
+  .footer-bottom a {
+    color: #60d5f8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-bottom a:hover {
+    color: #93c5fd;
+    text-decoration: underline;
   }
 
   .footer-legal {
