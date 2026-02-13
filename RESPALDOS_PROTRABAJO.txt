@@ -1,0 +1,51 @@
+# Respaldos Completos - ProTrabajo
+
+## ¿Qué tienes aquí?
+
+Tienes 2 respaldos completos de tu sitio web ProTrabajo:
+
+### 1. Sitio Web (Astro)
+- **Archivo:** `protrabajo-cl-main.zip`
+- **Qué es:** Todo el código fuente de tu sitio web
+- **Para qué sirve:** Para modificar, actualizar o mover el sitio
+
+### 2. Administración (WordPress)
+- **Carpeta:** `wordpress-admin/`
+- **Archivos:** 
+  - `protrabajo-....zip` (sitio completo)
+  - `protrabajo_admin_wpvivid....zip` (administración)
+- **Qué es:** El panel de administración donde gestionas contenido
+- **Para qué sirve:** Para restaurar el panel de administración
+
+## ¿Cómo usar estos respaldos?
+
+### Si necesitas modificar el sitio web:
+1. Descomprime `protrabajo-cl-main.zip`
+2. Edita los archivos que necesites
+3. Sube los cambios al servidor
+
+### Si el panel de administración falla:
+1. Entra a tu hosting
+2. Usa el plugin WPVivid
+3. Restaura desde los archivos de `wordpress-admin/`
+
+## Links importantes:
+
+- **Código del sitio:** https://github.com/codigoraul/protrabajo.cl
+- **Sitio web:** https://protrabajo.cl
+- **Administración:** https://protrabajo.cl/admin
+
+## Recomendaciones:
+
+✅ Guarda estos respaldos en un lugar seguro
+✅ Haz respaldos nuevos cada mes
+✅ No borres estos archivos hasta tener respaldos más recientes
+
+## ¿Necesitas ayuda?
+
+Contacta a tu desarrollador con:
+- Estos archivos de respaldo
+- Una descripción de lo que necesitas hacer
+
+---
+*Archivos creados el: 12 de febrero de 2026*
