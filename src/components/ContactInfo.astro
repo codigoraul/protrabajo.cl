@@ -199,14 +199,8 @@ const statusData = status ? statusMessages[status] : null;
           // Obtener datos del formulario
           const formData = new FormData(form);
           
-          // Agregar Access Key de Web3Forms
-          formData.append('access_key', '9de0126d-b064-42ee-8da2-de5b333b8cf6');
-          
-          // Agregar correos adicionales
-          formData.append('email', 'codigoraul@gmail.com,rguajardo@protrabajo.cl,contacto@polerasfutbol.cl');
-          
           try {
-            const response = await fetch('https://api.web3forms.com/submit', {
+            const response = await fetch(`${basePath}/contacto.php`, {
               method: 'POST',
               body: formData
             });

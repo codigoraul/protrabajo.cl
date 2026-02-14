@@ -168,17 +168,7 @@ $asuntoCell = $asunto !== '' ? $escape($asunto) : '-';
 $telefonoCell = $telefono !== '' ? $escape($telefono) : '-';
 $mensajeHtml = nl2br($escape($mensaje));
 
-$bodyHtml = '<!doctype html><html><head><meta charset="UTF-8"></head><body style="font-family:Arial,Helvetica,sans-serif; color:#111827;">'
-  . '<h2 style="margin:0 0 16px; font-size:18px;">Nueva consulta desde ProTrabajo</h2>'
-  . '<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; width:100%; max-width:640px;">'
-  . '<tbody>'
-  . '<tr><td style="padding:8px 10px; border:1px solid #E5E7EB; font-weight:700; width:180px;">Nombre</td><td style="padding:8px 10px; border:1px solid #E5E7EB;">' . $escape($nombre) . '</td></tr>'
-  . '<tr><td style="padding:8px 10px; border:1px solid #E5E7EB; font-weight:700;">Email</td><td style="padding:8px 10px; border:1px solid #E5E7EB;">' . $escape($email) . '</td></tr>'
-  . '<tr><td style="padding:8px 10px; border:1px solid #E5E7EB; font-weight:700;">Teléfono</td><td style="padding:8px 10px; border:1px solid #E5E7EB;">' . $telefonoCell . '</td></tr>'
-  . '<tr><td style="padding:8px 10px; border:1px solid #E5E7EB; font-weight:700;">Asunto</td><td style="padding:8px 10px; border:1px solid #E5E7EB;">' . $asuntoCell . '</td></tr>'
-  . '<tr><td style="padding:8px 10px; border:1px solid #E5E7EB; font-weight:700; vertical-align:top;">Mensaje</td><td style="padding:8px 10px; border:1px solid #E5E7EB;">' . $mensajeHtml . '</td></tr>'
-  . '</tbody></table>'
-  . '</body></html>';
+$bodyHtml = '<!doctype html><html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;background:#f3f4f6;margin:0;padding:20px}.container{max-width:600px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.1)}.header{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:30px;text-align:center}.header h1{margin:0;font-size:24px}.content{padding:30px}.field{margin-bottom:20px}.label{font-weight:700;color:#667eea;margin-bottom:5px;font-size:14px}.value{background:#f9fafb;padding:12px;border-radius:6px;border-left:3px solid #667eea;font-size:15px}.footer{text-align:center;padding:20px;color:#6b7280;font-size:12px;border-top:1px solid #e5e7eb}</style></head><body><div class="container"><div class="header"><h1>📧 Nuevo Mensaje de Contacto</h1><p style="margin:5px 0 0;opacity:0.9">ProTrabajo.cl</p></div><div class="content"><p style="color:#374151;margin:0 0 20px">Hola,</p><p style="color:#6b7280;margin:0 0 30px">Has recibido un nuevo mensaje desde el formulario de contacto de tu sitio web.</p><div class="field"><div class="label">👤 Nombre</div><div class="value">' . $escape($nombre) . '</div></div><div class="field"><div class="label">📧 Email</div><div class="value">' . $escape($email) . '</div></div><div class="field"><div class="label">📱 Teléfono</div><div class="value">' . $telefonoCell . '</div></div>' . ($asunto !== '' ? '<div class="field"><div class="label">📋 Asunto</div><div class="value">' . $asuntoCell . '</div></div>' : '''') . '<div class="field"><div class="label">💬 Mensaje</div><div class="value">' . $mensajeHtml . '</div></div><div class="footer"><p style="margin:5px 0">Este mensaje fue enviado desde ProTrabajo.cl</p><p style="margin:5px 0">© 2026 ProTrabajo - Todos los derechos reservados</p></div></div></div></body></html>';
 
 $bodyText = "Nueva consulta desde ProTrabajo\n\n"
   . "Nombre: {$nombre}\n"
