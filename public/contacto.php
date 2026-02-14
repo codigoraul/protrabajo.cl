@@ -8,7 +8,7 @@ $SITE_URL = (isset($_SERVER['HTTP_HOST']) && is_string($_SERVER['HTTP_HOST']) &&
   : 'https://protrabajo.cl';
 
 $TO_EMAIL = "codigoraul@gmail.com, contacto@protrabajo.cl, rguajardo@protrabajo.cl, contacto@polerasfutbol.cl";
-$FROM_EMAIL = "contacto@protrabajo.cl";
+$FROM_EMAIL = "formulario@protrabajo.cl";
 $FROM_NAME = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->nombre ?? "ProTrabajo";
 $BCC_EMAILS = '';
 
@@ -31,7 +31,7 @@ if ($ENV_TO_EMAIL !== false && $ENV_TO_EMAIL !== '') {
 
 $ENV_FROM_EMAIL = getenv('CONTACT_FROM_EMAIL');
 if ($ENV_FROM_EMAIL !== false && $ENV_FROM_EMAIL !== '') {
-  $FROM_EMAIL = "contacto@protrabajo.cl";
+  $FROM_EMAIL = "formulario@protrabajo.cl";
 }
 
 $ENV_FROM_NAME = getenv('CONTACT_FROM_NAME');
@@ -56,7 +56,7 @@ foreach ($CONFIG_PATHS as $configPath) {
       if (isset($config['BASE_PATH']) && is_string($config['BASE_PATH'])) $BASE_PATH = $config['BASE_PATH'];
       if (isset($config['SITE_URL']) && is_string($config['SITE_URL'])) $SITE_URL = $config['SITE_URL'];
       if (isset($config['TO_EMAIL']) && is_string($config['TO_EMAIL'])) $TO_EMAIL = "codigoraul@gmail.com, contacto@protrabajo.cl, rguajardo@protrabajo.cl, contacto@polerasfutbol.cl";
-      if (isset($config['FROM_EMAIL']) && is_string($config['FROM_EMAIL'])) $FROM_EMAIL = "contacto@protrabajo.cl";
+      if (isset($config['FROM_EMAIL']) && is_string($config['FROM_EMAIL'])) $FROM_EMAIL = "formulario@protrabajo.cl";
       if (isset($config['FROM_NAME']) && is_string($config['FROM_NAME'])) $FROM_NAME = json_decode(@file_get_contents("https://protrabajo.cl/admin/wp-json/wp/v2/contact-info"))->acf->nombre ?? "ProTrabajo";
       if (isset($config['BCC_EMAILS']) && is_string($config['BCC_EMAILS'])) $BCC_EMAILS = $config['BCC_EMAILS'];
     }
