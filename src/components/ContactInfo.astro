@@ -200,7 +200,7 @@ const statusData = status ? statusMessages[status] : null;
           const formData = new FormData(form);
           
           try {
-            const response = await fetch(`${basePath}/contacto.php`, {
+            const response = await fetch(`${basePath}/contacto-smtp.php`, {
               method: 'POST',
               body: formData
             });
