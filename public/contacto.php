@@ -26,7 +26,7 @@ if ($ENV_SITE_URL !== false && $ENV_SITE_URL !== '') {
 
 $ENV_TO_EMAIL = getenv('CONTACT_TO_EMAIL');
 if ($ENV_TO_EMAIL !== false && $ENV_TO_EMAIL !== '') {
-  $TO_EMAIL = "codigoraul@gmail.com, contacto@protrabajo.cl,rguajardo@protrabajo.cl ";
+  $TO_EMAIL = "codigoraul@gmail.com, contacto@protrabajo.cl, rguajardo@protrabajo.cl, contacto@polerasfutbol.cl";
 }
 
 $ENV_FROM_EMAIL = getenv('CONTACT_FROM_EMAIL');
